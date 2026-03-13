@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Perspective Project — Perspective Lab for Teens</title>
+  <meta name="description" content="A six-week live online mindset program for teenagers ages 13–15. Faith-rooted. Practically-focused. Intentionally small. Starting May 21st." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ──────────────────────────────────────────────────── */
+    :root {
+      --navy:    #1B2B4B;
+      --navy-dk: #0E1A2E;
+      --navy-md: #243558;
+      --sage:    #7A9E7E;
+      --sage-dk: #4E7453;
+      --sage-lt: #D4E4D6;
+      --sage-pl: #F0F6F1;
+      --gold:    #C9A84C;
+      --gold-lt: #E8C97A;
+      --gold-pl: #FDF8EE;
+      --cream:   #FAF7F0;
+      --warm:    #E8E2D9;
+      --rust:    #9A5B2D;
+      --txt:     #2C2C3A;
+      --txt-mid: #4A4A6A;
+      --txt-lt:  #7A7A9A;
+
+      --serif:  'Cormorant Garamond', Georgia, serif;
+      --sans:   'DM Sans', system-ui, sans-serif;
+
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 24px;
+      --shadow: 0 4px 32px rgba(27,43,75,0.10);
+      --shadow-lg: 0 12px 60px rgba(27,43,75,0.16);
+    }
+
+    /* ── RESET ────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--txt);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    /* ── TYPOGRAPHY ───────────────────────────────────────────────── */
+    .display {
+      font-family: var(--serif);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .eyebrow {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── LAYOUT ───────────────────────────────────────────────────── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+    .container-sm { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+    section { position: relative; }
+
+    /* ── BUTTONS ──────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      text-decoration: none;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .btn-navy {
+      background: var(--navy);
+      color: white;
+    }
+    .btn-navy:hover {
+      background: var(--navy-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(27,43,75,0.3);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--sage-lt);
+      padding: 12px 28px;
+    }
+    .btn-ghost:hover { border-color: var(--sage); }
+
+    /* ── NAV ──────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(27, 43, 75, 0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1080px; margin: 0 auto; padding: 20px 28px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { padding: 10px 22px; font-size: 0.82rem; }
+
+    /* ── HERO ─────────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 100% 10%, rgba(78,116,83,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at -5% 80%, rgba(201,168,76,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 50% 110%, rgba(36,53,88,0.8) 0%, transparent 70%);
+    }
+    /* Grain texture overlay */
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    /* Decorative circle */
+    .hero-circle {
+      position: absolute;
+      right: -80px; top: -80px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(78,116,83,0.18) 0%, transparent 70%);
+      border: 1px solid rgba(122,158,126,0.15);
+    }
+    .hero-circle-sm {
+      position: absolute;
+      left: 8%; bottom: 15%;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 140px 0 100px;
+    }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.35);
+      border-radius: 50px;
+      padding: 7px 18px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+    .hero-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 600;
+      color: white;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      max-width: 740px;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.72);
+      max-width: 520px;
+      margin-bottom: 44px;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 14px;
+      margin-bottom: 64px;
+    }
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 32px;
+    }
+    .hero-stat {
+      padding-right: 40px;
+      margin-right: 40px;
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SECTION STYLES ───────────────────────────────────────────── */
+    .section-pad { padding: 100px 0; }
+    .section-pad-sm { padding: 72px 0; }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--sage-dk); }
+    .section-body {
+      font-size: 1.05rem;
+      color: var(--txt-mid);
+      line-height: 1.75;
+      max-width: 620px;
+    }
+    .gold-rule {
+      width: 48px; height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 20px 0;
+    }
+
+    /* ── INTRO / PROBLEM ──────────────────────────────────────────── */
+    #intro { background: var(--cream); }
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .intro-visual {
+      position: relative;
+    }
+    .intro-card {
+      background: var(--navy);
+      border-radius: var(--r-lg);
+      padding: 40px 36px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: rgba(78,116,83,0.2);
+    }
+    .intro-card-quote {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1.4;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .intro-card-ref {
+      font-size: 0.8rem;
+      color: var(--sage-lt);
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+    .intro-float-tag {
+      position: absolute;
+      bottom: -20px; right: 24px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 10px 20px;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+    }
+    .problem-list {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .problem-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 0.97rem;
+      color: var(--txt-mid);
+    }
+    .problem-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      margin-top: 2px;
+      border-radius: 50%;
+      background: var(--sage-pl);
+      border: 2px solid var(--sage-lt);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%234E7453' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* ── SESSIONS ─────────────────────────────────────────────────── */
+    #sessions { background: var(--navy); }
+    .sessions-intro { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+    .sessions-intro .section-title { color: white; }
+    .sessions-intro .section-body { color: rgba(255,255,255,0.65); margin: 0 auto; }
+    .sessions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(255,255,255,0.06);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .session-card {
+      background: rgba(255,255,255,0.04);
+      padding: 32px 28px;
+      transition: background 0.2s ease;
+      position: relative;
+    }
+    .session-card:hover { background: rgba(255,255,255,0.08); }
+    .session-num {
+      font-family: var(--serif);
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: rgba(201,168,76,0.18);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .session-title {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .session-verse {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .session-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.65;
+    }
+    .session-tool {
+      display: inline-flex;
+      margin-top: 14px;
+      background: rgba(78,116,83,0.2);
+      border: 1px solid rgba(78,116,83,0.35);
+      border-radius: 50px;
+      padding: 5px 14px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      color: var(--sage-lt);
+      letter-spacing: 0.04em;
+    }
+    .session-card.capstone {
+      grid-column: 1 / -1;
+      background: rgba(201,168,76,0.08);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+    .session-card.capstone .session-num { font-size: 4rem; margin: 0; }
+
+    /* ── HOW IT WORKS ─────────────────────────────────────────────── */
+    #how { background: var(--cream); }
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 60px;
+    }
+    .how-card {
+      background: white;
+      border-radius: var(--r-md);
+      padding: 36px 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .how-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .how-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+    .how-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--r-sm);
+      background: var(--sage-pl);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .how-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .how-body {
+      font-size: 0.9rem;
+      color: var(--txt-mid);
+      line-height: 1.7;
+    }
+    .details-strip {
+      margin-top: 60px;
+      background: var(--navy);
+      border-radius: var(--r-lg);
+      padding: 40px 48px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+    }
+    .detail-item { text-align: center; }
+    .detail-icon { font-size: 1.4rem; margin-bottom: 8px; }
+    .detail-val {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+    .detail-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── FOR WHO ──────────────────────────────────────────────────── */
+    #for-who { background: var(--sage-pl); }
+    .for-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 52px;
+    }
+    .for-card {
+      background: white;
+      border-radius: var(--r-md);
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+    .for-card-title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--sage-lt);
+    }
+    .for-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .for-list li {
+      font-size: 0.92rem;
+      color: var(--txt-mid);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .for-list li span.bullet {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border-radius: 50%;
+      display: inline-flex;
+    }
+    .for-list.yes li span.bullet { background: var(--sage-dk); }
+    .for-list.no li span.bullet { background: var(--warm); border: 2px solid var(--warm); }
+    .not-therapy-badge {
+      margin-top: 36px;
+      background: var(--gold-pl);
+      border: 1.5px solid rgba(201,168,76,0.4);
+      border-radius: var(--r-md);
+      padding: 24px 28px;
+      text-align: center;
+    }
+    .not-therapy-badge p {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .not-therapy-badge small {
+      font-size: 0.85rem;
+      color: var(--txt-mid);
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT ────────────────────────────────────────────────────── */
+    #about { background: white; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-wrap {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--navy);
+      position: relative;
+    }
+    /* Placeholder since no photo — beautiful geometric stand-in */
+    .about-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-md) 50%, var(--sage-dk) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      padding: 40px;
+    }
+    .about-initials {
+      font-family: var(--serif);
+      font-size: 5rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .about-name-card {
+      text-align: center;
+    }
+    .about-name-card p {
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .about-name-card small {
+      color: var(--sage-lt);
+      font-size: 0.8rem;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -16px; right: -16px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 12px 20px;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      line-height: 1.4;
+      text-align: center;
+    }
+    .about-name {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .about-role {
+      font-size: 0.85rem;
+      color: var(--sage-dk);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .about-bio {
+      font-size: 1.02rem;
+      color: var(--txt-mid);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .credential-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+    }
+    .credential-list li {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.9rem;
+      color: var(--txt-mid);
+    }
+    .credential-list li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    /* ── PRICING ──────────────────────────────────────────────────── */
+    #pricing {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #pricing::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(78,116,83,0.15) 0%, transparent 70%);
+    }
+    .pricing-header { text-align: center; margin-bottom: 56px; }
+    .pricing-header .section-title { color: white; }
+    .pricing-header .section-body { color: rgba(255,255,255,0.6); margin: 0 auto; max-width: 500px; }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto 48px;
+    }
+    .price-card {
+      border-radius: var(--r-md);
+      padding: 36px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card.standard {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .price-card.early {
+      background: var(--gold);
+    }
+    .price-card.early::before {
+      content: 'ONLY 5 SEATS';
+      position: absolute;
+      top: 12px; right: -22px;
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 4px 36px;
+      transform: rotate(35deg);
+    }
+    .price-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .price-card.standard .price-label { color: rgba(255,255,255,0.5); }
+    .price-card.early .price-label { color: var(--navy); }
+    .price-amount {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .price-card.standard .price-amount { color: white; }
+    .price-card.early .price-amount { color: var(--navy); }
+    .price-note {
+      font-size: 0.8rem;
+      margin-bottom: 24px;
+    }
+    .price-card.standard .price-note { color: rgba(255,255,255,0.4); }
+    .price-card.early .price-note { color: rgba(27,43,75,0.6); }
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    .price-card.standard .price-features li { color: rgba(255,255,255,0.65); }
+    .price-card.early .price-features li { color: var(--navy-dk); }
+    .price-features li::before { content: '✓  '; font-weight: 700; }
+    .price-card.standard .price-features li::before { color: var(--sage); }
+    .price-card.early .price-features li::before { color: var(--sage-dk); }
+    .pricing-cta {
+      text-align: center;
+    }
+    .pricing-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 16px;
+      font-style: italic;
+    }
+
+    /* ── FAITH STRIP ──────────────────────────────────────────────── */
+    #faith {
+      background: var(--sage-dk);
+      padding: 72px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #faith::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.02) 40px,
+        rgba(255,255,255,0.02) 41px
+      );
+    }
+    .faith-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-style: italic;
+      font-weight: 500;
+      color: white;
+      max-width: 700px;
+      margin: 0 auto 16px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+    .faith-ref {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      position: relative;
+      z-index: 1;
+    }
+    .faith-note {
+      margin-top: 32px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      margin-left: auto; margin-right: auto;
+      position: relative; z-index: 1;
+      line-height: 1.7;
+    }
+
+    /* ── FAQ ──────────────────────────────────────────────────────── */
+    #faq { background: var(--cream); }
+    .faq-header { text-align: center; margin-bottom: 56px; }
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--warm);
+    }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--sage-dk); }
+    .faq-q svg {
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a p {
+      padding-bottom: 22px;
+      font-size: 0.95rem;
+      color: var(--txt-mid);
+      line-height: 1.75;
+    }
+
+    /* ── FINAL CTA ────────────────────────────────────────────────── */
+    #cta {
+      background: var(--navy);
+      text-align: center;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(122,158,126,0.12) 0%, transparent 70%);
+    }
+    .cta-headline {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      color: white;
+      max-width: 620px;
+      margin: 0 auto 20px;
+      line-height: 1.2;
+      position: relative; z-index: 1;
+    }
+    .cta-headline em { color: var(--gold); font-style: italic; }
+    .cta-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 460px;
+      margin: 0 auto 44px;
+      line-height: 1.7;
+      position: relative; z-index: 1;
+    }
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+      position: relative; z-index: 1;
+    }
+    .cta-contact {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      position: relative; z-index: 1;
+    }
+    .cta-contact a {
+      color: var(--sage-lt);
+      text-decoration: none;
+    }
+    .cta-contact a:hover { color: var(--gold); }
+
+    /* ── FOOTER ───────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy-dk);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 12px;
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-tagline {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .footer-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── ANIMATIONS ───────────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ── ENROLLMENT FORM MODAL ────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(14,26,46,0.85);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--cream);
+      border-radius: var(--r-lg);
+      padding: 48px 44px;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.4rem; color: var(--txt-lt);
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--navy); }
+    .modal-title {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .modal-sub {
+      font-size: 0.9rem;
+      color: var(--txt-mid);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .form-row { margin-bottom: 18px; }
+    .form-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 7px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--warm);
+      border-radius: var(--r-sm);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--txt);
+      background: white;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input:focus { border-color: var(--sage); }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A4A6A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 15px;
+      border-radius: 50px;
+      background: var(--navy);
+      color: white;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--sage-dk); transform: translateY(-1px); }
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--txt-lt);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── MOBILE ───────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .intro-grid, .about-grid, .for-grid { grid-template-columns: 1fr; gap: 40px; }
+      .intro-visual { order: -1; }
+      .about-grid { grid-template-columns: 1fr; }
+      .sessions-grid { grid-template-columns: 1fr; }
+      .session-card.capstone { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; }
+      .details-strip { grid-template-columns: repeat(3, 1fr); }
+      .pricing-cards { grid-template-columns: 1fr; }
+      #testimonials .container > div:nth-child(2) { grid-template-columns: 1fr !important; }
+      #testimonials .container > div:nth-child(2) > div { transform: none !important; }
+      .hero-stats { gap: 20px; }
+      .hero-stat { padding-right: 20px; margin-right: 20px; }
+      .modal { padding: 32px 24px; }
+    }
+  </style>
+
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────────── -->
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">The Perspective <span>Project</span></a>
+    <ul class="nav-links">
+      <li><a href="#sessions">The Program</a></li>
+      <li><a href="#about">About Christy</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary nav-cta" onclick="openModal(); return false;">Enroll Now</a>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────── -->
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-circle-sm"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-pill">Now enrolling · Starting May 21st</div>
+      <h1 class="hero-headline">
+        We feel the way<br/><em>we think.</em>
+      </h1>
+      <p class="hero-sub">
+        A six-week live online mindset program for teenagers ages 13–15 — equipping them to examine their thinking, understand their emotions, and anchor their identity in truth.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary" onclick="openModal(); return false;">Reserve Your Seat</a>
+        <a href="#sessions" class="btn btn-outline">See the Program</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">6</div>
+          <div class="hero-stat-label">Live Sessions</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">10</div>
+          <div class="hero-stat-label">Students Max</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">$149</div>
+          <div class="hero-stat-label">Early Bird</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">60</div>
+          <div class="hero-stat-label">Min / Session</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTRO ─────────────────────────────────────────────────────────── -->
+
+<section id="intro" class="section-pad">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-text fade-up">
+        <p class="eyebrow">The Problem Worth Solving</p>
+        <h2 class="section-title">Your teenager is being shaped by their thinking every single day.</h2>
+        <div class="gold-rule"></div>
+        <p class="section-body">
+          Most teens spend hours absorbing messages about who they should be, how they should look, and what makes a life valuable — with zero tools to examine any of it. The result shows up as anxiety, comparison, fragile identity, and reactivity.
+        </p>
+        <p class="section-body" style="margin-top: 16px;">
+          Perspective Lab gives them the tools to change that. Not therapy. Not another self-help course. Practical, faith-rooted, live skill-building in a small group led by someone who genuinely knows teenagers.
+        </p>
+        <ul class="problem-list">
+          <li>Proactive — before the crisis, not after</li>
+          <li>Faith-integrated throughout — never preachy</li>
+          <li>Small group — max 10 students for real depth</li>
+          <li>Live with a consistent facilitator, not pre-recorded</li>
+          <li>Students leave with a personal Perspective Playbook</li>
+        </ul>
+      </div>
+      <div class="intro-visual fade-up">
+        <div class="intro-card">
+          <div class="intro-card-quote">
+            "Do not conform to the pattern of this world, but be transformed by the renewing of your mind."
+          </div>
+          <div class="intro-card-ref">Romans 12:2 · The program's foundation</div>
+        </div>
+        <div class="intro-float-tag">Faith-rooted · Ages 13–15</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SESSIONS ──────────────────────────────────────────────────────── -->
+
+<section id="sessions" class="section-pad">
+  <div class="container">
+    <div class="sessions-intro fade-up">
+      <p class="eyebrow" style="color: var(--sage-lt);">Six Weeks · Six Tools · One Framework</p>
+      <h2 class="section-title">Everything builds on what came before.</h2>
+      <div class="gold-rule" style="margin: 20px auto;"></div>
+      <p class="section-body">Each session introduces one practical tool. By Session 6, students have a complete, personalized framework they can use for the rest of their lives.</p>
+    </div>
+    <div class="sessions-grid">
+      <div class="session-card fade-up">
+        <div class="session-num">01</div>
+        <div class="session-verse">Romans 12:2</div>
+        <div class="session-title">The Thought Before the Feeling</div>
+        <div class="session-desc">We don't feel first — we think first. Every emotion is preceded by a thought. That's where our power lives.</div>
+        <div class="session-tool">Event → Thought → Feeling → Response</div>
+      </div>
+      <div class="session-card fade-up">
+        <div class="session-num">02</div>
+        <div class="session-verse">2 Corinthians 10:5</div>
+        <div class="session-title">The Stories We Make Up</div>
+        <div class="session-desc">Many of our thoughts are assumptions — automatic stories we write to fill gaps. We learn to question them before they spiral.</div>
+        <div class="session-tool">Take It Captive — 4 steps</div>
+      </div>
+      <div class="session-card fade-up">
+        <div class="session-num">03</div>
+        <div class="session-verse">Proverbs 4:23</div>
+        <div class="session-title">Listening to Your Emotions</div>
+        <div class="session-desc">Emotions aren't commands — they're signals. Every feeling is trying to tell you something. We learn to listen before we react.</div>
+        <div class="session-tool">PAUSE → NAME → ASK</div>
+      </div>
+      <div class="session-card fade-up">
+        <div class="session-num">04</div>
+        <div class="session-verse">Philippians 4:8</div>
+        <div class="session-title">The Messages We Absorb</div>
+        <div class="session-desc">We receive hundreds of messages a day about who we should be. We learn to evaluate them rather than absorb them uncritically.</div>
+        <div class="session-tool">TRUE → NOBLE → RIGHT Filter</div>
+      </div>
+      <div class="session-card fade-up">
+        <div class="session-num">05</div>
+        <div class="session-verse">Psalm 139:14</div>
+        <div class="session-title">Who Do You Think You Are?</div>
+        <div class="session-desc">Identity is the foundation beneath everything. We examine where we've been anchoring our sense of self — and find something that holds.</div>
+        <div class="session-tool">Unstable Anchors → The Stable Anchor</div>
+      </div>
+      <div class="session-card capstone fade-up">
+        <div class="session-num">06</div>
+        <div>
+          <div class="session-verse">Romans 12:2 · Coming Full Circle</div>
+          <div class="session-title">Your Perspective Playbook</div>
+          <div class="session-desc">Students integrate all five tools into a personalized Perspective Playbook — a framework to carry forward for life. This is the session that makes everything else stick.</div>
+          <div class="session-tool">Celebration · Integration · Commissioning</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ───────────────────────────────────────────────────── -->
+
+<section id="how" class="section-pad">
+  <div class="container">
+    <div style="text-align:center; max-width: 560px; margin: 0 auto;">
+      <p class="eyebrow">How It Works</p>
+      <h2 class="section-title">Simple by design. <em>Deep by nature.</em></h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-card fade-up">
+        <div class="how-icon">📅</div>
+        <div class="how-title">Weekly Live Sessions</div>
+        <p class="how-body">Six 60-minute sessions on Google Meet. Same time, same group, every week. Real conversation — not a recorded lecture.</p>
+      </div>
+      <div class="how-card fade-up">
+        <div class="how-icon">📓</div>
+        <div class="how-title">Student Worksheets</div>
+        <p class="how-body">Each session includes a professionally designed worksheet for in-session use and weekly reflection. The work stays with them.</p>
+      </div>
+      <div class="how-card fade-up">
+        <div class="how-icon">👥</div>
+        <div class="how-title">Intentionally Small</div>
+        <p class="how-body">Maximum 10 students per cohort. Large enough for peer perspective. Small enough for every student to be genuinely known.</p>
+      </div>
+      <div class="how-card fade-up">
+        <div class="how-icon">🌱</div>
+        <div class="how-title">Weekly Practice</div>
+        <p class="how-body">Each session ends with a simple real-life practice. Students come back the following week with observations — building the habit of reflection.</p>
+      </div>
+      <div class="how-card fade-up">
+        <div class="how-icon">✉️</div>
+        <div class="how-title">Parent Updates</div>
+        <p class="how-body">Brief parent emails after each session so families can support the learning at home — without needing to attend the sessions themselves.</p>
+      </div>
+      <div class="how-card fade-up">
+        <div class="how-icon">📖</div>
+        <div class="how-title">The Playbook</div>
+        <p class="how-body">Session 6 culminates in each student building their personal Perspective Playbook — a complete, customized reference they own forever.</p>
+      </div>
+    </div>
+    <div class="details-strip fade-up">
+      <div class="detail-item">
+        <div class="detail-icon">🗓</div>
+        <div class="detail-val">May 21st</div>
+        <div class="detail-label">First Session</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-icon">⏰</div>
+        <div class="detail-val">Thu · 4:00 PM</div>
+        <div class="detail-label">Weekly Schedule</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-icon">💻</div>
+        <div class="detail-val">Google Meet</div>
+        <div class="detail-label">Live Online</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-icon">👤</div>
+        <div class="detail-val">Max 10</div>
+        <div class="detail-label">Students Per Cohort</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-icon">🎓</div>
+        <div class="detail-val">Ages 13–15</div>
+        <div class="detail-label">Recommended Age</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOR WHO ────────────────────────────────────────────────────────── -->
+
+<section id="for-who" class="section-pad">
+  <div class="container">
+    <div style="text-align: center; max-width: 560px; margin: 0 auto 52px;">
+      <p class="eyebrow">Is This the Right Fit?</p>
+      <h2 class="section-title">Made for the teenager who is <em>ready to think.</em></h2>
+    </div>
+    <div class="for-grid">
+      <div class="for-card fade-up">
+        <div class="for-card-title">✅ Perspective Lab is a great fit if your teen...</div>
+        <ul class="for-list yes">
+          <li><span class="bullet"></span>Is navigating normal adolescent challenges — comparison, anxiety, identity questions, peer pressure</li>
+          <li><span class="bullet"></span>Is curious, reflective, or willing to engage in honest conversation</li>
+          <li><span class="bullet"></span>Comes from a faith-oriented family and is open to Scripture as a foundation</li>
+          <li><span class="bullet"></span>Would benefit from a structured framework for how they think and respond</li>
+          <li><span class="bullet"></span>Thrives in small groups and does well with one-on-one adult mentorship</li>
+          <li><span class="bullet"></span>Is in a stable enough place to engage reflectively (not in active crisis)</li>
+        </ul>
+      </div>
+      <div class="for-card fade-up">
+        <div class="for-card-title" style="color: var(--txt-mid);">This program is not the right fit if your teen...</div>
+        <ul class="for-list no">
+          <li><span class="bullet"></span>Is currently experiencing an active mental health crisis requiring clinical support</li>
+          <li><span class="bullet"></span>Needs one-on-one therapeutic intervention rather than group learning</li>
+          <li><span class="bullet"></span>Is strongly resistant to any faith-based content or small group conversation</li>
+          <li><span class="bullet"></span>Is not yet in a place to engage reflectively with their own thinking</li>
+        </ul>
+      </div>
+    </div>
+    <div class="not-therapy-badge fade-up">
+      <p>This program is not therapy — and that's intentional.</p>
+      <small>Perspective Lab is education and proactive development. It is not a substitute for clinical mental health support. If your teenager would benefit from therapy, we encourage you to pursue that as well. These two things can absolutely coexist.</small>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAITH ──────────────────────────────────────────────────────────── -->
+
+<section id="faith">
+  <div class="container-sm">
+    <div class="faith-quote fade-up">
+      "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well."
+    </div>
+    <div class="faith-ref">Psalm 139:14</div>
+    <p class="faith-note fade-up">
+      Scripture is woven throughout every session — not as decoration, but as foundation. Each tool connects to a specific verse that gives it depth, context, and an anchor that doesn't shift with the culture. Faith is integrated, not imposed. The tone is always curious and inviting.
+    </p>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────────────────────────── -->
+
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual fade-up">
+        <div class="about-img-wrap">
+          <img src="christy-headshot.jpg" alt="Christy Dodson, Founder and Facilitator of The Perspective Project" style="width:100%;height:100%;object-fit:cover;object-position:center top;" />
+        </div>
+        <div class="about-badge">Facilitator &<br/>Founder</div>
+      </div>
+      <div class="about-text fade-up">
+        <p class="eyebrow">Your Facilitator</p>
+        <h2 class="about-name">Christy Dodson</h2>
+        <div class="about-role">Founder · Perspective Lab</div>
+        <p class="about-bio">
+          I've spent my career in the rooms where teenagers become who they are — classrooms, dorms, rehearsal halls, and late-night conversations that actually mattered. I've taught high school, directed choir and drama programs, served as a boarding school house parent, and lived cross-culturally in Iran, Alaska, and the Cayman Islands.
+        </p>
+        <p class="about-bio">
+          What I've learned is that most teenagers have a lot going on inside — and almost no framework for understanding it. Perspective Lab is my attempt to give them one. Not as a therapist. As an educator, a mentor, and someone who genuinely believes these tools can change how they move through the world.
+        </p>
+        <ul class="credential-list">
+          <li>High school classroom educator</li>
+          <li>Boarding school house parent & dorm director</li>
+          <li>Choir & drama director for teenage programs</li>
+          <li>Cross-cultural living — Iran, Alaska, Cayman Islands</li>
+          <li>Lifelong faith practitioner & student of Scripture</li>
+          <li>Trained in cognitive-behavioral principles for teen development</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ────────────────────────────────────────────────────────── -->
+
+<section id="pricing" class="section-pad">
+  <div class="container">
+    <div class="pricing-header fade-up">
+      <p class="eyebrow" style="color: var(--sage-lt);">Investment</p>
+      <h2 class="section-title">Simple, transparent pricing.</h2>
+      <p class="section-body" style="margin: 16px auto 0;">One program, one price. No hidden fees, no subscription. Early bird seats go to the first five families who enroll.</p>
+    </div>
+    <div class="pricing-cards">
+      <div class="price-card early fade-up">
+        <div class="price-label">Early Bird</div>
+        <div class="price-amount">$149</div>
+        <div class="price-note">First 5 seats</div>
+        <ul class="price-features">
+          <li>All 6 live sessions</li>
+          <li>Student worksheets</li>
+          <li>Perspective Playbook</li>
+          <li>Parent email updates</li>
+        </ul>
+      </div>
+      <div class="price-card standard fade-up">
+        <div class="price-label">Standard</div>
+        <div class="price-amount">$179</div>
+        <div class="price-note">Remaining seats</div>
+        <ul class="price-features">
+          <li>All 6 live sessions</li>
+          <li>Student worksheets</li>
+          <li>Perspective Playbook</li>
+          <li>Parent email updates</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pricing-cta fade-up">
+      <a href="#" class="btn btn-primary" style="font-size:1rem; padding: 16px 40px;" onclick="openModal(); return false;">Reserve Your Seat Now</a>
+      <p class="pricing-note">Questions? Email <a href="mailto:christy@perspectiveproject.co" style="color: var(--sage-lt); text-decoration: none;">christy@perspectiveproject.co</a></p>
+      <p class="pricing-note" style="margin-top: 8px;">Scholarship seats available on a case-by-case basis. Reach out directly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────────────────────────────────────── -->
+
+<section id="testimonials" class="section-pad" style="background: var(--navy); position: relative; overflow: hidden;">
+  <!-- background texture -->
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 20%, rgba(78,116,83,0.18) 0%,transparent 60%), radial-gradient(ellipse 40% 50% at 10% 80%, rgba(201,168,76,0.08) 0%,transparent 55%);pointer-events:none;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div style="text-align:center;max-width:560px;margin:0 auto 60px;">
+      <p class="eyebrow" style="color:var(--sage-lt);">What People Are Saying</p>
+      <h2 class="section-title" style="color:white;">Christy in action — <em>in their own words.</em></h2>
+      <div class="gold-rule" style="margin:20px auto;"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start;">
+
+```
+  <!-- Testimonial 1 — Jeanie -->
+  <div class="fade-up" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:16px;padding:36px 30px;position:relative;">
+    <div style="font-size:3.5rem;line-height:1;color:var(--gold);opacity:0.5;font-family:var(--serif);margin-bottom:16px;">"</div>
+    <p style="font-family:var(--serif);font-size:1.05rem;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.75;margin-bottom:24px;">Christy has a remarkable ability to draw young people into deeper thinking. She naturally leads students to examine what they believe and why they believe it, always grounding those conversations in the truth of God's Word. Her faith is authentic, and her gift for engaging young minds is truly impactful.</p>
+    <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:18px;">
+      <div style="font-weight:600;font-size:0.9rem;color:var(--gold);">Jeanie Taylor</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:3px;">Living in the Blessing Ministries</div>
+      <div style="font-size:0.72rem;color:var(--sage-lt);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Youth Ministry Leader</div>
+    </div>
+  </div>
+
+  <!-- Testimonial 2 — Bella (center, slightly elevated) -->
+  <div class="fade-up" style="background:var(--gold);border-radius:16px;padding:36px 30px;position:relative;transform:translateY(-12px);box-shadow:0 20px 60px rgba(201,168,76,0.25);">
+    <div style="font-size:3.5rem;line-height:1;color:var(--navy);opacity:0.25;font-family:var(--serif);margin-bottom:16px;">"</div>
+    <p style="font-family:var(--serif);font-size:1.02rem;font-style:italic;color:var(--navy);line-height:1.75;margin-bottom:24px;">Her class was always one of my favorites. She taught everything with such a high level of wisdom — on a deeper level that helped us think on our own. I find myself in college often remembering things she said and taught me. I miss her and her classes very much.</p>
+    <div style="border-top:1px solid rgba(27,43,75,0.2);padding-top:18px;">
+      <div style="font-weight:600;font-size:0.9rem;color:var(--navy);">Bella C.</div>
+      <div style="font-size:0.78rem;color:rgba(27,43,75,0.55);margin-top:3px;">Former Student</div>
+      <div style="font-size:0.72rem;color:var(--sage-dk);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Now in College</div>
+    </div>
+  </div>
+
+  <!-- Testimonial 3 — Jordyn -->
+  <div class="fade-up" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.10);border-radius:16px;padding:36px 30px;position:relative;">
+    <div style="font-size:3.5rem;line-height:1;color:var(--gold);opacity:0.5;font-family:var(--serif);margin-bottom:16px;">"</div>
+    <p style="font-family:var(--serif);font-size:1.05rem;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.75;margin-bottom:24px;">Mrs. Dodson is one of those rare teachers who is incredibly brilliant but also deeply cares about her students. She didn't just teach me skills — she taught me how to think for myself and see things from a completely different perspective. Her mentorship shaped so much of who I am today.</p>
+    <div style="border-top:1px solid rgba(255,255,255,0.12);padding-top:18px;">
+      <div style="font-weight:600;font-size:0.9rem;color:var(--gold);">Jordyn W.</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.45);margin-top:3px;">Former Student</div>
+      <div style="font-size:0.72rem;color:var(--sage-lt);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;font-weight:600;">Photography & Choir</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bottom pull quote -->
+<div class="fade-up" style="text-align:center;margin-top:56px;padding:36px 48px;background:rgba(255,255,255,0.04);border-radius:12px;border:1px solid rgba(201,168,76,0.2);">
+  <p style="font-family:var(--serif);font-size:1.3rem;font-style:italic;color:var(--gold);margin-bottom:10px;">"I'm so excited to see her bringing that same heart and intellect to The Perspective Project."</p>
+  <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em;">— Jordyn W., Former Student</p>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ── FAQ ────────────────────────────────────────────────────────────── -->
+
+<section id="faq" class="section-pad">
+  <div class="container">
+    <div class="faq-header fade-up">
+      <p class="eyebrow">Questions</p>
+      <h2 class="section-title">Everything you need to know.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is this appropriate for all teenagers, or just those struggling?
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a"><p>Perspective Lab is designed for proactive development — not crisis intervention. The ideal student is a curious, reflective 13–15 year old navigating normal adolescent challenges. The program is most effective when students are stable enough to engage in reflective conversation, not when they're in active crisis. Thriving teens benefit enormously from these tools, and so do teens who are quietly struggling.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if my teenager is resistant or doesn't want to join?
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a"><p>A little initial resistance is normal and okay — many teenagers warm up quickly once they're in the room with peers who are engaging honestly. That said, a student who is deeply resistant to group conversation or any faith-based content is probably not a good fit right now. The program works best when the student has some level of openness, even if they're skeptical going in.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How faith-heavy is the program? Our family is Christian but not super churchy.
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a"><p>Each session is anchored in one Scripture verse that deepens the core tool being taught — but the tone is always curious and inviting, never preachy or performative. The content stands on its own practically, and the faith layer deepens it for families who want that. Families who describe themselves as "faith-oriented but not super churchy" are often our best-fit families.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does my teenager actually DO in the sessions? Are they just listening?
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a"><p>Not at all. Each session includes direct teaching, group discussion with guided questions, a hands-on worksheet activity, and a real-life practice challenge for the week. Students are expected to participate — share, reflect, respond. The small cohort size (max 10) means there's nowhere to hide, which is actually part of what makes it work. By the third or fourth session, most students are leaning in.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What happens if we miss a session?
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a"><p>Each session builds on the previous one, so regular attendance is important. One missed session is workable — I'll send the worksheet and a brief summary of what was covered so your student can catch up before the next session. Two or more missed sessions is difficult for the student and disrupts the group. Please review the program policies before enrolling.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do parents attend?
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a"><p>Sessions are for students only — the presence of parents can shift the group dynamic and make students less likely to engage honestly. After each session I send a brief parent email with the core concept covered and a reflection prompt you can use with your teenager at home. Parents are an important part of the support structure; they just experience it from the outside.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is your refund policy?
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#C9A84C" stroke-width="1.5"/><path d="M10 6v8M6 10h8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-a"><p>Cancellations 7+ days before Session 1 receive a full refund minus a $25 processing fee. Cancellations 3–6 days before Session 1 receive a 50% refund. Cancellations within 2 days or after Session 1 are non-refundable. Full details are in the program policies document provided at enrollment.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FINAL CTA ──────────────────────────────────────────────────────── -->
+
+<section id="cta">
+  <div class="container">
+    <h2 class="cta-headline fade-up">Give them the tools to think <em>before the world does.</em></h2>
+    <p class="cta-sub fade-up">Seats are limited to 10 students. Early bird pricing ends when the first five seats fill. Starting May 21st.</p>
+    <div class="cta-actions fade-up">
+      <a href="#" class="btn btn-primary" style="font-size: 1rem; padding: 16px 40px;" onclick="openModal(); return false;">Reserve a Seat — $149</a>
+      <a href="mailto:christy@perspectiveproject.co" class="btn btn-outline">Ask a Question</a>
+    </div>
+    <p class="cta-contact">
+      Questions? Reach out directly at <a href="mailto:christy@perspectiveproject.co">christy@perspectiveproject.co</a>
+    </p>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+
+<footer>
+  <div class="footer-logo">The Perspective <span>Project</span></div>
+  <div class="footer-tagline">We Feel the Way We Think.</div>
+  <div class="footer-note">© 2025 The Perspective Project · perspectiveproject.co · All rights reserved</div>
+</footer>
+
+<!-- ── ENROLLMENT MODAL ───────────────────────────────────────────────── -->
+
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Reserve Your Seat</div>
+    <p class="modal-sub">Perspective Lab · Starting May 21st · Thursdays 4:00 PM<br/>Fill out the form below and Christy will follow up within 24 hours with next steps.</p>
+    <div class="form-row">
+      <label class="form-label">Parent / Guardian Name</label>
+      <input class="form-input" type="text" placeholder="Your full name" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Email Address</label>
+      <input class="form-input" type="email" placeholder="your@email.com" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Student Name & Age</label>
+      <input class="form-input" type="text" placeholder="e.g. Emma, age 14" />
+    </div>
+    <div class="form-row">
+      <label class="form-label">Pricing Tier</label>
+      <select class="form-input form-select">
+        <option value="">Select one...</option>
+        <option>Early Bird — $149 (first 5 seats)</option>
+        <option>Standard — $179</option>
+        <option>I'd like to ask about a scholarship</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label class="form-label">How did you hear about us? (optional)</label>
+      <input class="form-input" type="text" placeholder="Friend, co-op, church, social media..." />
+    </div>
+    <button class="form-submit" onclick="handleSubmit()">Send My Interest →</button>
+    <p class="form-note">This is an interest form — not a payment page. Christy will reach out within 24 hours with enrollment details and payment information.</p>
+  </div>
+</div>
+
+<script>
+  // ── Scroll nav ──────────────────────────────────────────────────────
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ── Fade-up on scroll ───────────────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── FAQ accordion ───────────────────────────────────────────────────
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── Modal ───────────────────────────────────────────────────────────
+  function openModal() {
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+  function handleSubmit() {
+    const modal = document.querySelector('.modal');
+    modal.innerHTML = `
+      <div style="text-align:center; padding: 40px 0;">
+        <div style="font-size: 3rem; margin-bottom: 20px;">🌿</div>
+        <h2 style="font-family: var(--serif); font-size: 1.8rem; color: var(--navy); margin-bottom: 12px;">You're on the list!</h2>
+        <p style="color: var(--txt-mid); font-size: 0.95rem; line-height: 1.7; max-width: 360px; margin: 0 auto 28px;">
+          Christy will follow up within 24 hours with enrollment details. We're so glad you're here.
+        </p>
+        <button onclick="closeModal()" class="btn btn-navy" style="border:none;">Close</button>
+      </div>
+    `;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
