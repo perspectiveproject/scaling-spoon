@@ -1600,33 +1600,37 @@
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-title">Reserve Your Seat</div>
     <p class="modal-sub">Perspective Lab · Starting May 21st · Thursdays 4:00 PM<br/>Fill out the form below and Christy will follow up within 24 hours with next steps.</p>
-    <div class="form-row">
-      <label class="form-label">Parent / Guardian Name</label>
-      <input class="form-input" type="text" placeholder="Your full name" />
-    </div>
-    <div class="form-row">
-      <label class="form-label">Email Address</label>
-      <input class="form-input" type="email" placeholder="your@email.com" />
-    </div>
-    <div class="form-row">
-      <label class="form-label">Student Name & Age</label>
-      <input class="form-input" type="text" placeholder="e.g. Emma, age 14" />
-    </div>
-    <div class="form-row">
-      <label class="form-label">Pricing Tier</label>
-      <select class="form-input form-select">
-        <option value="">Select one...</option>
-        <option>Early Bird — $149 (first 5 seats)</option>
-        <option>Standard — $179</option>
-        <option>I'd like to ask about a scholarship</option>
-      </select>
-    </div>
-    <div class="form-row">
-      <label class="form-label">How did you hear about us? (optional)</label>
-      <input class="form-input" type="text" placeholder="Friend, co-op, church, social media..." />
-    </div>
-    <button class="form-submit" onclick="handleSubmit()">Send My Interest →</button>
-    <p class="form-note">This is an interest form — not a payment page. Christy will reach out within 24 hours with enrollment details and payment information.</p>
+    <form name="enrollment" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="form-name" value="enrollment" />
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field" /></label></p>
+      <div class="form-row">
+        <label class="form-label">Parent / Guardian Name</label>
+        <input class="form-input" type="text" name="parent-name" placeholder="Your full name" required />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" name="email" placeholder="your@email.com" required />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Student Name & Age</label>
+        <input class="form-input" type="text" name="student-name-age" placeholder="e.g. Emma, age 14" required />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Pricing Tier</label>
+        <select class="form-input form-select" name="pricing-tier" required>
+          <option value="">Select one...</option>
+          <option>Early Bird — $149 (first 5 seats)</option>
+          <option>Standard — $179</option>
+          <option>I'd like to ask about a scholarship</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">How did you hear about us? (optional)</label>
+        <input class="form-input" type="text" name="referral-source" placeholder="Friend, co-op, church, social media..." />
+      </div>
+      <button type="submit" class="form-submit">Send My Interest →</button>
+      <p class="form-note">This is an interest form — not a payment page. Christy will reach out within 24 hours with enrollment details and payment information.</p>
+    </form>
   </div>
 </div>
 
@@ -1668,18 +1672,27 @@
   function handleOverlayClick(e) {
     if (e.target === document.getElementById('modal')) closeModal();
   }
-  function handleSubmit() {
-    const modal = document.querySelector('.modal');
-    modal.innerHTML = `
-      <div style="text-align:center; padding: 40px 0;">
-        <div style="font-size: 3rem; margin-bottom: 20px;">🌿</div>
-        <h2 style="font-family: var(--serif); font-size: 1.8rem; color: var(--navy); margin-bottom: 12px;">You're on the list!</h2>
-        <p style="color: var(--txt-mid); font-size: 0.95rem; line-height: 1.7; max-width: 360px; margin: 0 auto 28px;">
-          Christy will follow up within 24 hours with enrollment details. We're so glad you're here.
-        </p>
-        <button onclick="closeModal()" class="btn btn-navy" style="border:none;">Close</button>
-      </div>
-    `;
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    fetch('/', { method: 'POST', body: data })
+      .then(() => {
+        const modal = document.querySelector('.modal');
+        modal.innerHTML = `
+          <div style="text-align:center; padding: 40px 0;">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🌿</div>
+            <h2 style="font-family: var(--serif); font-size: 1.8rem; color: var(--navy); margin-bottom: 12px;">You're on the list!</h2>
+            <p style="color: var(--txt-mid); font-size: 0.95rem; line-height: 1.7; max-width: 360px; margin: 0 auto 28px;">
+              Christy will follow up within 24 hours with enrollment details. We're so glad you're here.
+            </p>
+            <button onclick="closeModal()" class="btn btn-navy" style="border:none;">Close</button>
+          </div>
+        `;
+      })
+      .catch(() => {
+        alert('Something went wrong. Please email christy@perspectiveproject.co directly!');
+      });
   }
 
   document.addEventListener('keydown', e => {
